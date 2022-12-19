@@ -16,3 +16,5 @@ The aim of the hunter is to collect the diamonds without being caught by the sol
 * A single user will play the game. In other words, you will choose which direction the hunter will advance with the arrow keys during the game. Therefore, the locations of the diamonds and guards will be randomly determined when the game first starts, and the player must not see their location. However, he can decide where to go with the distance information to the diamonds at every step.
 
 * After each step of the hunter, information about the game board and the location of the diamonds should be printed on the screen. (Diamonds and guards will not be visible in this printed chart.)
+
+* Diamonds or guards cannot be outside the game board. The hunter cannot leave the game board.
