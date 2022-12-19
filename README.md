@@ -9,4 +9,6 @@ The aim of the hunter is to collect the diamonds without being caught by the sol
 
 * Every diamond has a guardian. This guard will be randomly placed in one of the cells adjacent to the diamond. Even if 2 diamonds are randomly placed on adjacent positions on the board, they will each have a separate guardian and a guardian cannot be in the same cell with another guardian or diamond.
 
-* 
+* What the player has to do is to move on the board using the right, left, up and down keys and find the cell with the diamond without being caught by the guard. The player cannot go diagonally.
+
+* If the player hits the guard, he returns to the starting position (2,4) as a penalty. It can come across as a guard up to 3 times. If he hits the guard again for the 4th time, he loses the game.
