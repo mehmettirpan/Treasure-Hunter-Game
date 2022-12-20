@@ -1,202 +1,344 @@
-// author Mehmet TIRPAN
-#include <stdlib.h>
+//
+//  main.c
+//  Treasure Hunter Game
+//
+//  Created by Mehmet TIRPAN on 25.11.2022.
+//
+
 #include <stdio.h>
-#include <curses.h>
+#include <stdlib.h>
 #include <time.h>
 
-int main(){
-srand(time(NULL));
-int x=2, y=4;
 
-
-    int i,j=0;
-    char matris[10][10];
-        for(i=0; i<10; i++){
-            for(j=0; j<10; j++){
-                matris[i][j]=' ';
-            }
-        }
-
-
-
-
-
-
-
-
+int x=2,y=4;
+int matris[10][10];
+int sayac = 5;
+int can = 3;
+void cerceve();
+void elmasAtama();
+void muhafizAtama();
+void mYakaladimi();
+void adres();
+void elmasKontrol();
+void muhafizKontrol();
+void elmasYeme();
+int elmaslar_x [5];
+int elmaslar_y [5];
+int muhafizlar_x [5];
+int muhafizlar_y [5];
+int yedimmi [10][10];
 
 
 
- //     5 adet elmasın ayrı ayrı atandığı bölüm --------------------------------------------------------------------------------------------------
-
-
-        int a1,a2,a3,a4,a5,b1,b2,b3,b4,b5;
-        a1 = rand() % 10;
-        b1 = rand() % 10;
-        if(((a1==a2)||(a1==a3)||(a1==a4)||(a1==a5))&&((b1==b2)||(b1==b3)||(b1==b4)||(b1==b5))){
-        a1 = rand() % 10;
-        b1 = rand() % 10;
-        }
-        else if ((a1==2) && (b1==4)){
-        a1 = rand() % 10;
-        b1 = rand() % 10;
-        }
-        matris[a1][b1] = 'e';
-
-
-        a2 = rand() % 10;
-        b2 = rand() % 10;
-        if(((a1==a2)||(a2==a3)||(a2==a4)||(a2==a5))&&((b1==b2)||(b2==b3)||(b2==b4)||(b2==b5))){
-        a2 = rand() % 10;
-        b2 = rand() % 10;
-        }
-        else if ((a2==2) && (b2==4)){
-        a2 = rand() % 10;
-        b2 = rand() % 10;
-        }
-        matris[a2][b2] = 'e';
-
-
-        a3 = rand() % 10;
-        b3 = rand() % 10;
-        if(((a3==a1)||(a3==a2)||(a3==a4)||(a3==a5))&&((b3==b1)||(b3==b2)||(b3==b4)||(b3==b5))){
-        a3 = rand() % 10;
-        b3 = rand() % 10;
-        }
-        else if ((a3==2) && (b3==4)){
-        a3 = rand() % 10;
-        b3 = rand() % 10;
-        }
-        matris[a3][b3] = 'e';
-
-
-        a4 = rand() % 10;
-        b4 = rand() % 10;
-        if(((a4==a1)||(a4==a2)||(a4=a3)||(a4==a5))&&((b4==b1)||(b4==b2)||(b4==b3)||(b4==b5))){
-        a4 = rand() % 10;
-        b4 = rand() % 10;
-        }
-        else if ((a4==2) && (b4==4)){
-        a4 = rand() % 10;
-        b4 = rand() % 10;
-        }
-        matris[a4][b4] = 'e';
-
-
-        a5 = rand() % 10;
-        b5 = rand() % 10;
-        if(((a5==a2)||(a5==a3)||(a5==a4)||(a1==a5))&&((b5==b2)||(b5==b3)||(b5==b4)||(b1==b5))){
-        a5 = rand() % 10;
-        b5 = rand() % 10;
-        }
-        else if ((a5==2) && (b5==4)){
-        a5 = rand() % 10;
-        b5 = rand() % 10;
-        }
-        matris[a5][b5] = 'e';
+int main() {
+   
     
+    
+    
+    
+    
+    
+    for(int i=0;i<10;i++)//matris e deger atama
+    {
+        for(int j=0;j<10;j++)
+        {
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-//  Muhafız atamaları
-
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-    while(1){
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-        //  Uzaklık gösteren ekran
-
-        int uzaklık1,uzaklık2,uzaklık3,uzaklık4,uzaklık5;
-        printf("\n Uzaklıklar;");
-            if ((x==a1)&&(y==b1)){
-                printf("\n1.elmas Alındı");
-            }
-            else{
-            uzaklık1 = abs(x-a1) + abs(y-b1);
-            printf("\n elmas 1: %d", uzaklık1);
-             }
-            uzaklık2 = abs(x-a2) + abs(y-b2);
-            printf("\n elmas 2: %d", uzaklık2);
-
-             uzaklık3 = abs(x-a3) + abs(y-b3);
-            printf("\n elmas 3: %d", uzaklık3);
-
-             uzaklık4 = abs(x-a4) + abs(y-b4);
-            printf("\n elmas 4: %d", uzaklık4);
-
-             uzaklık5 = abs(x-a5) + abs(y-b5);
-            printf("\n elmas 5: %d \n", uzaklık5);
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-    matris[x][y] ='A';  // Avcı
-
-
-    for(i=0;i<10;i++){
-        for(int j=0; j<10; j++){
-            printf("%c", matris[i][j]);
+            matris[i][j] = 0;
         }
-        printf("\n");
     }
-        
-
-        printf("yön tuşlarına basınız\n(w-a-s-d);\n");
-        printf("oyundan cikmak icin e tusuna basınız \n");
-        char yon = getchar();
-
-        matris[x][y] = ' ';   // matris hareket ettikten sonra arkasındaki satıra tekrardan boşluk atayan kod
-
-
-//       matris alanı içerisine sınırlandırılmış switch komutları ---------------------------------------------------------------------------
-
-        switch (yon) {
-           case 'w' :
-            if(x>0){
-                x--;
-            }
-            else
-            {
-                printf("\nAlandan çıkılmaz");
-            }
-             break;
-            
-                
-           case 'a' :
-                if(y>0){
-                    y--;
-                }
-                else
+   
+    
+    srand(time(NULL));
+    elmasAtama(matris);
+    elmasKontrol(matris);
+    for( int i=0;i<5;i++)
+    {
+        yedimmi[elmaslar_x[i]][elmaslar_y[i]]=1;
+    }
+    muhafizAtama();
+    muhafizKontrol(matris);
+    
+    cerceve(matris,x,y);
+   
+    
+    
+    while(1)
+    {
+        char tus;
+        tus=getchar();
+        switch(tus)
+        {
+            case 'w':
+                if(x!=0)
                 {
-                    printf("\nAlandan çıkılmaz");
+                    x--;
+                    matris[x+1][y]=0;
+                    cerceve(matris,x,y);
                 }
-             break;
-                
-           case 's' :
-            if(x<9){
-                x++;
-            }
-            else
-            {
-                printf("\nAlandan çıkılmaz");
-            }
-             break;
-                
-            case 'd' :
-            if(y<9){
-                y++;
-            }
-            else
-            {
-                printf("\nAlandan çıkılmaz");
-            }
-             break;
+                    else{
+                        printf("disari cikamazsiniz!!!");
+                    }
 
-            case 'e':
-            return 1;
+                break;
+            case 'a':
+                if(y!=0)
+                {
+                    y--;
+                    matris[x][y+1]=0;
+                    cerceve(matris,x,y);
+                }
+                    else{
+                        printf("disari cikamazsiniz!!!");
+                    }
+
+
+                break;
+            case 's':
+                if(x!=9)
+                {
+                    x++;
+                    matris[x-1][y]=0;
+                    cerceve(matris,x,y);
+                }
+                    else{
+                        printf("disari cikamazsiniz!!!");
+                    }
+
+                break;
+            case 'd':
+                if(y!=9)
+                {
+                    y++;
+                    matris[x][y-1]=0;
+                    cerceve(matris,x,y);
+                }
+                    else{
+                        printf("disari cikamazsiniz!!!");
+                    }
+                break;
+
         }
-
+        if(can==0)
+        {
+            printf("\malesef kaybettiniz...");
+            break;
+        }
     }
+    
+    
+        
     return 0;
 }
 
+
+void cerceve(int matris[10][10],int x,int y)
+{
+    
+    matris[x][y]=1;
+    printf("  ");
+    for(int i=0;i<10;i++)
+    {
+        printf(" %d  ",i);
+    }
+    printf("\n");
+    printf(" ");
+    
+    for(int i=1;i<=42;i++)
+    {
+        printf("*");
+    }
+    printf("\n");
+    
+    for(int i=0;i<10;i++)
+    {
+        
+        printf("%d",i);
+        printf("*");
+        for(int j=0;j<10;j++)
+        {
+                printf("%d|",matris[i][j]);
+        }
+        printf("*");
+        printf("\n");
+    }
+    printf(" ");
+    for(int i=1;i<=42;i++)
+    {
+        printf("*");
+    }
+    elmasYeme(matris);
+    printf("\n--caniniz:%d--\n",can);
+    adres();
+    mYakaladimi();
+    
+   
+}
+void elmasAtama(int matris[10][10])
+{
+    
+    
+   
+   
+    for(int i=0;i<5;i++)
+    {
+        matris[elmaslar_x[i]][elmaslar_y[i]]=0;
+        elmaslar_x[i]=rand()%10;
+        elmaslar_y[i]=rand()%10;
+
+        if( elmaslar_x[i]==2 && elmaslar_y[i]==4)//avcinin başlangic konumu ile elmasların cakimamasi icin .
+        {
+            elmasAtama(matris);
+        }
+    }
+    
+    
+    
+    
+    
+    
+}
+void elmasKontrol(int matris[10][10])
+{
+    for(int i=0;i<5;i++)
+    {
+        if(matris[elmaslar_x[i]][elmaslar_y[i]]!=0)
+        {
+            elmasAtama(matris);
+        }
+        matris[elmaslar_x[i]][elmaslar_y[i]]=5;
+
+                  
+        
+    }
+}
+void muhafizAtama(int matris[10][10])
+{
+//
+//
+    int muhafizDegerleri [] = {-1,0,1};
+//    for (int i=0;i<5;i++)
+//    {
+//        int k = rand()%3;
+//        int l = rand()%3;
+//        if (k==1&&l==1)
+//        {
+//            muhafizAtama(matris);
+//        }
+//        muhafizlar_x[i] = elmaslar_x[i]+muhafizDegerleri[k];
+//        muhafizlar_y[i] = elmaslar_y[i]+muhafizDegerleri[l];
+//        if(matris[muhafizlar_x[i]][muhafizlar_y[i]]!=0&&elmaslar_x[i]==9||elmaslar_y[i]==9||elmaslar_x[i]==0||elmaslar_y[i]==0)
+//        {
+//            matris[muhafizlar_x[i]][muhafizlar_y[i]]=0;
+//            muhafizAtama(matris);
+//        }
+//        else{
+//            matris[muhafizlar_x[i]][muhafizlar_y[i]]=3;
+//        }
+//    }
+//
+    for(int i=0;i<5;i++)
+    {
+        int j=rand()%3;
+        int k=rand()%3;
+        if(j==1&&k==1)
+        {
+            muhafizAtama(matris);
+        }
+        if(muhafizlar_x[i]==elmaslar_x[i]&&muhafizlar_y[i]==elmaslar_y[i])
+        {
+            matris[muhafizlar_x[i]][muhafizlar_y[i]]=0;
+        }
+
+        muhafizlar_x[i] = elmaslar_x[i] + muhafizDegerleri[j];
+        muhafizlar_y[i] = elmaslar_y[i] + muhafizDegerleri[k];
+
+        if( muhafizlar_x[i]==2 && muhafizlar_y[i]==4)//avcinin başlangic konumu ile muhafizlarin cakismamasi icin .
+        {
+            muhafizAtama(matris);
+        }
+
+
+    }
+}
+    void muhafizKontrol(int matris [10][10])
+    {
+        for(int i=0;i<5;i++)
+        {
+
+            if(matris[muhafizlar_x[i]][muhafizlar_y[i]]!=0)
+            {
+                muhafizAtama(matris);
+            }
+            matris[muhafizlar_x[i]][muhafizlar_y[i]]=3;
+
+
+
+        }
+    }
+    
+void  elmasYeme(int matris [10][10])
+{
+    
+
+    
+        
+    for( int i=0;i<5;i++)
+    {
+        
+        if(elmaslar_x[i]==x && elmaslar_y[i]==y)
+        {
+            if(yedimmi[elmaslar_x[i]][elmaslar_y[i]]==1)
+            {
+                yedimmi[elmaslar_x[i]][elmaslar_y[i]]=0;
+                sayac--;
+                printf("\nelmas yediniz...");
+            }
+            
+        }
+        
+  
+   }
+    if(sayac==0)
+    {
+        printf("\noyunu kazandiniz...");
+        return;
+    }
+    
+}
+    
+
+void adres()
+{
+    for(int i=0;i<5;i++)
+    {
+        if(yedimmi[elmaslar_x[i]][elmaslar_y[i]]==1)
+          {
+              
+              printf("\n%d.elmas:%d\n",i+1,abs(x-elmaslar_x[i])+abs(y-elmaslar_y[i]));
+          }
+        
+    }
+}
+void mYakaladimi()
+{
+    for( int i=0;i<5;i++)
+    {
+        
+        if(muhafizlar_x[i]==x && muhafizlar_y[i]==y)
+        {
+            
+                
+                can--;
+                printf("\nmuhafiza yakalandiniz!!!\n");
+            matris[muhafizlar_x[i]][muhafizlar_y[i]]=0;
+                x=2;
+                y=4;
+            cerceve( matris, x,y);
+            
+            
+        }
+        
+  
+   }
+    
+}
