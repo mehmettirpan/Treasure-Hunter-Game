@@ -2,7 +2,7 @@
 //  main.c
 //  Treasure Hunter Game
 //
-//  Created by Mehmet TIRPAN on 25.11.2022.
+//  Created by Mehmet TIRPAN and Kerem KIYAK on 25.11.2022.
 //
 
 #include <stdio.h>
