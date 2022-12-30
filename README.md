@@ -5,7 +5,7 @@
 * A treasure hunter is trying to find diamonds in a 10x10 field. Each diamond is guarded by a soldier. 
 The aim of the hunter is to collect the diamonds without being caught by the soldiers.
 
-* The hunter's starting position on the board is fixed. So each time the game starts, the hunter's position will be (2,4).
+* The hunter's starting position on the board is fixed. So each time the game starts, the hunter's position will be (4, 2).
 
 * There are 5 diamonds in the field and these diamonds must be placed in random cells when the game first starts. The player will not see the diamonds on the board. While diamonds are randomly assigned to cells, it should be prevented that more than one diamond coincides with the same cell. (You can use the Rand () function to determine a random position)
 
