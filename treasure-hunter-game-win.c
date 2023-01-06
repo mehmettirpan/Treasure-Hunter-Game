@@ -5,8 +5,11 @@
 #include <time.h>
 
 #include <windows.h>//system cls icin
+
 //sifirlama yapilmadan once kodun calismasini takip etmek icin elmaslara 5 , muhafizlara 3 atanmistir.
 //daha sonrasidan sifirlama yapildigi icin tahtada 5 ve 3 ler gozukmemekdedir.
+
+
 int x = 2, y = 4;//avcinin baslangic konumu
 
 int matris[10][10];//tahtadaki 100 hucreyi olusturmak icin
@@ -45,7 +48,7 @@ void load();
 int main()
 {
     load();
-    srand(time(NULL));//randim atama icin
+    srand(time(NULL));//random atama icin
 
     for (int i = 0; i < 10; i++) // matris e deger atama
 
